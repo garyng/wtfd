@@ -19,7 +19,7 @@ namespace Wtfd.Verbs.Find
 
 		public async Task<FindResponse> Handle(FindRequest request, CancellationToken cancellationToken)
 		{
-			var configs = new List<Configuration>();
+			var configs = new Dictionary<string, Configuration>();
 			var files = new List<string>();
 			var current = _fs.DirectoryInfo.FromDirectoryName(request.Path ?? _fs.Directory.GetCurrentDirectory());
 			do
@@ -29,7 +29,7 @@ namespace Wtfd.Verbs.Find
 				{
 					var config = Json.Deserialize<Configuration>(await _fs.File.ReadAllTextAsync(configFile));
 					files.Add(configFile);
-					configs.Add(config);
+					configs.Add(configFile, config);
 
 					// stop searching if the current config is marked as the root config
 					if (config.IsRoot) break;

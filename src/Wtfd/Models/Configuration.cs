@@ -10,7 +10,7 @@ namespace Wtfd.Models
 		/// <summary>
 		/// The version of the configuration file.
 		/// </summary>
-		public string Version { get; set; }
+		public int Version { get; set; }
 
 		/// <summary>
 		/// Whether the configuration file is the root configuration.
@@ -18,8 +18,8 @@ namespace Wtfd.Models
 		public bool IsRoot { get; set; }
 
 		/// <summary>
-		/// All documentations.
+		/// All documentations, the `key` is the match pattern for the directory.
 		/// </summary>
-		public List<Doc> Docs { get; set; }
+		public Dictionary<string, Docs> Docs { get; set; }
 	}
 }

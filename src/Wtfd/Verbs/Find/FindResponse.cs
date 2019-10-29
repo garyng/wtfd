@@ -13,6 +13,6 @@ namespace Wtfd.Verbs.Find
 		/// <summary>
 		/// List of configurations found.
 		/// </summary>
-		public List<Configuration> Configurations { get; set; }
+		public Dictionary<string, Configuration> Configurations { get; set; }
 	}
 }
