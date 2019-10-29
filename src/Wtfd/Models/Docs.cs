@@ -15,6 +15,7 @@ namespace Wtfd.Models
 		/// </summary>
 		public IEnumerable<string> Descriptions { get; set; }
 
+		[JsonIgnore] public bool IsExpanded => Descriptions == null && NestedDocs != null;
 
 		/// <summary>
 		/// Documentations that are nested.

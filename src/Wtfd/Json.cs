@@ -10,33 +10,32 @@ namespace Wtfd
 	{
 		public override Docs Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
-			if (reader.TokenType == JsonTokenType.StartArray)
+			switch (reader.TokenType)
 			{
-				return new Docs
-				{
-					Descriptions = JsonSerializer.Deserialize<IEnumerable<string>>(ref reader, options)
-				};
+				case JsonTokenType.StartArray:
+					return new Docs
+					{
+						Descriptions = JsonSerializer.Deserialize<IEnumerable<string>>(ref reader, options)
+					};
+				case JsonTokenType.StartObject:
+					return new Docs
+					{
+						NestedDocs = JsonSerializer.Deserialize<Dictionary<string, Docs>>(ref reader, options)
+					};
+				default:
+					return null;
 			}
-			else if (reader.TokenType == JsonTokenType.StartObject)
-			{
-				return new Docs
-				{
-					NestedDocs = JsonSerializer.Deserialize<Dictionary<string, Docs>>(ref reader, options)
-				};
-			}
-
-			return null;
 		}
 
 		public override void Write(Utf8JsonWriter writer, Docs value, JsonSerializerOptions options)
 		{
-			if (value.Descriptions != null)
-			{
-				JsonSerializer.Serialize(writer, value.Descriptions, options);
-			}
-			else if (value.NestedDocs != null)
+			if (value.IsExpanded)
 			{
 				JsonSerializer.Serialize(writer, value.NestedDocs, options);
+			}
+			else
+			{
+				JsonSerializer.Serialize(writer, value.Descriptions, options);
 			}
 		}
 	}
