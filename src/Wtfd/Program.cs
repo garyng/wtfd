@@ -1,90 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.IO.Abstractions;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Autofac;
+using MediatR;
+using MediatR.Extensions.Autofac.DependencyInjection;
+using CommandLine;
+using Wtfd.Verbs.Find;
 
 namespace Wtfd
 {
 	class Program
 	{
-		static void Main(string[] args)
+		static Task Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			var builder = new ContainerBuilder();
+			builder.AddMediatR(typeof(IMediatorMarker).Assembly);
+			builder.RegisterType<FileSystem>().As<IFileSystem>();
 
-			// Autofac + MediatR + CommandLineParser
+			var container = builder.Build();
+
+			var mediator = container.Resolve<IMediator>();
+			return Parser.Default
+				.ParseArguments<FindRequest, EditRequest>(args)
+				.MapResult(
+					(FindRequest find) => onFind(mediator, find),
+					(EditRequest edit) => Task.CompletedTask,
+					errors => Task.CompletedTask);
+		}
+
+		private static async Task onFind(IMediator mediator, FindRequest find)
+		{
+			var result = await mediator.Send(find);
+			Console.WriteLine(string.Join(Environment.NewLine, result.ConfigurationFiles));
 		}
 	}
 
-	public class FindCommandHandler
+	[Verb("edit", HelpText = "Edit the description for a directory.")]
+	public class EditRequest : IRequest
 	{
-		private IFileSystem _fs;
-
-		public FindCommandHandler(IFileSystem fs)
-		{
-			_fs = fs;
-		}
-
-		public FindCommandHandler() : this(new FileSystem())
-		{
-		}
-
-		public async Task<string> Execute()
-		{
-			var current = _fs.DirectoryInfo.FromDirectoryName(_fs.Directory.GetCurrentDirectory());
-			do
-			{
-				var configFile = _fs.Path.Combine(current.FullName, "wtfd.json");
-				if (_fs.File.Exists(configFile))
-				{
-					return configFile;
-				}
-				else
-				{
-					current = current.Parent;
-				}
-			} while (current != null);
-
-			return "";
-		}
 	}
 
-	/// <summary>
-	/// Represent a `wtfd.json` file.
-	/// </summary>
-	public class Configuration
+	[Verb("report", HelpText = "Print the description for a directory.")]
+	public class ReportRequest : IRequest
 	{
-		/// <summary>
-		/// The version of the configuration file.
-		/// </summary>
-		public string Version { get; set; }
 
-		/// <summary>
-		/// Whether the configuration file is the root configuration.
-		/// </summary>
-		public bool IsRoot { get; set; }
-
-		/// <summary>
-		/// All documentations.
-		/// </summary>
-		public List<Doc> Docs { get; set; }
-	}
-
-	/// <summary>
-	/// Stores the documentation of a folder match pattern.
-	/// </summary>
-	public class Doc
-	{
-		/// <summary>
-		/// glob pattern for the documentation.
-		/// </summary>
-		public string Pattern { get; set; }
-
-		/// <summary>
-		/// Descriptions for the folder.
-		/// Each entry corresponds to a new line.
-		/// </summary>
-		public List<string> Descriptions { get; set; }
 	}
 }
