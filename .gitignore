@@ -394,3 +394,4 @@ tools/*
 !tools/packages.config
 
 # End of https://www.gitignore.io/api/cake
+/BuildArtifacts

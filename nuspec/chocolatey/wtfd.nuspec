@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>wtfd</id>
+    <version>$version$</version>
+    <owners>garyng</owners>
+    <title>wtfd</title>
+    <authors>garyng</authors>
+    <projectUrl>https://github.com/garyng/wtfd</projectUrl>
+    <!--<iconUrl>http://cdn.rawgit.com/__REPLACE_YOUR_REPO__/master/icons/wtfd.png</iconUrl>-->
+    <copyright>Copyright (c) 2019 - Present</copyright>
+    <licenseUrl>https://github.com/garyng/wtfd/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <docsUrl>https://github.com/garyng/wtfd</docsUrl>
+    <tags>wtfd folder documentation</tags>
+    <summary>Tool for documenting folders.</summary>
+    <description>Tool for documenting folders.</description>
+    <dependencies>
+      <dependency id="dotnetcore" version="3.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\BuildArtifacts\temp\_PublishedApplications\Wtfd\netcoreapp3.0\**" target="tools" />
+    <file src="LICENSE.txt"/>
+    <file src="VERIFICATION.txt"/>
+  </files>
+</package>
