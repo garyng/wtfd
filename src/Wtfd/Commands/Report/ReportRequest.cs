@@ -5,6 +5,7 @@ using Wtfd.Commands.Find;
 
 namespace Wtfd.Commands.Report
 {
+
 	[Verb("report", HelpText = "Print the description for a directory.")]
 	public class ReportRequest : IRequest<ReportResponse>
 	{

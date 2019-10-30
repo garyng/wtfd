@@ -7,6 +7,7 @@ using MediatR;
 using MediatR.Extensions.Autofac.DependencyInjection;
 using CommandLine;
 using Wtfd.Commands.Find;
+using Wtfd.Commands.Init;
 using Wtfd.Commands.Report;
 
 namespace Wtfd
@@ -23,11 +24,28 @@ namespace Wtfd
 
 			var mediator = container.Resolve<IMediator>();
 			return Parser.Default
-				.ParseArguments<FindRequest, ReportRequest>(args)
+				.ParseArguments<InitRequest, FindRequest, ReportRequest>(args)
 				.MapResult(
+					(InitRequest init) => onInit(mediator, init),
 					(FindRequest find) => onFind(mediator, find),
 					(ReportRequest report) => onReport(mediator, report),
 					errors => Task.CompletedTask);
+		}
+
+		private static async Task onInit(IMediator mediator, InitRequest init)
+		{
+			var result = await mediator.Send(init);
+			switch (result.Response)
+			{
+				case InitResponses.Success:
+					Console.WriteLine($"Created {result.Target}");
+					break;
+				case InitResponses.FileExists:
+					Console.WriteLine($"Target already exists at {result.Target}");
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 		}
 
 		private static async Task onFind(IMediator mediator, FindRequest find)
