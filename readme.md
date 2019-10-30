@@ -1,3 +1,3 @@
-# `wtfd` -- What This Folder Does?
+# `wtfd` — What This Folder Does?
 
 Documentation for folders.
