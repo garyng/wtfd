@@ -45,7 +45,8 @@ namespace Wtfd.Commands.Init
 				{
 					return new InitResponse
 					{
-						Response = InitResponses.FileExists
+						Response = InitResponses.FileExists,
+						Target = target
 					};
 				}
 			}

@@ -54,6 +54,7 @@ namespace Wtfd.Tests
 
 			// Assert
 			result.Response.Should().Be(InitResponses.FileExists);
+			result.Target.ToPosixPath().Should().Be("C:/A/wtfd.json");
 		}
 
 		[Test]
