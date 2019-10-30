@@ -1,0 +1,8 @@
+<Configuration>
+    <MappedFolders>
+        <MappedFolder>
+            <HostFolder>F:\Projects\Wtfd</HostFolder>
+            <ReadOnly>true</ReadOnly>
+        </MappedFolder>
+    </MappedFolders>
+</Configuration>
