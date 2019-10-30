@@ -5,17 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Cake: Debug Script (Mono)",
-            "type": "mono",
-            "request": "launch",
-            "program": "/tools/Cake/Cake.exe",
-            "args": [
-                "/recipe.cake",
-                "--debug",
-                "--verbosity=diagnostic"
-            ],
-            "cwd": "",
-            "console": "internalConsole"
         }
     ]
 }
