@@ -47,8 +47,21 @@ namespace Wtfd.Tests
 					}
 				}
 			};
-			var json =
-				"{\"version\":1,\"isRoot\":false,\"docs\":{\"\":[\"Descriptions for root directory\"],\"B/\":[\"Descriptions for directory B\"],\"C/\":[\"Descriptions for directory C\"]}}";
+			var json = @"{
+  ""version"": 1,
+  ""isRoot"": false,
+  ""docs"": {
+    """": [
+      ""Descriptions for root directory""
+    ],
+    ""B/"": [
+      ""Descriptions for directory B""
+    ],
+    ""C/"": [
+      ""Descriptions for directory C""
+    ]
+  }
+}";
 			return (config, json);
 		}
 
@@ -88,8 +101,29 @@ namespace Wtfd.Tests
 					}
 				}
 			};
-			var json =
-				"{\"version\":1,\"isRoot\":false,\"docs\":{\"\":[\"Descriptions for root directory\"],\"B/\":[\"Descriptions for directory B\"],\"C/\":[\"Descriptions for directory C\"],\"D/\":{\"\":[\"Descriptions for directory D\"],\"D1/\":[\"Descriptions for directory D1\"]}}}";
+			var json = @"{
+  ""version"": 1,
+  ""isRoot"": false,
+  ""docs"": {
+    """": [
+      ""Descriptions for root directory""
+    ],
+    ""B/"": [
+      ""Descriptions for directory B""
+    ],
+    ""C/"": [
+      ""Descriptions for directory C""
+    ],
+    ""D/"": {
+      """": [
+        ""Descriptions for directory D""
+      ],
+      ""D1/"": [
+        ""Descriptions for directory D1""
+      ]
+    }
+  }
+}";
 			return (config, json);
 		}
 

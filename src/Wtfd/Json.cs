@@ -44,7 +44,8 @@ namespace Wtfd
 	{
 		public static JsonSerializerOptions Options => new JsonSerializerOptions
 		{
-			PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+			PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+			WriteIndented = true
 		};
 
 		public static string Serialize<TValue>(TValue value) => JsonSerializer.Serialize(value, Options);
