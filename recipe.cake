@@ -11,15 +11,14 @@ BuildParameters.SetParameters(context: Context,
                             repositoryName: "wtfd",
                             shouldRunDupFinder: false,
                             shouldRunInspectCode: false,
-                            shouldRunGitVersion: true);
+                            shouldRunGitVersion: true, 
+                            packageSourceDatas: new List<PackageSourceData> {
+                                new PackageSourceData(Context, "CHOCOLATEY", "https://push.chocolatey.org/", FeedType.Chocolatey, isRelease: false),
+                                new PackageSourceData(Context, "CHOCOLATEY", "https://push.chocolatey.org/", FeedType.Chocolatey, isRelease: true)
+                            });
 
 BuildParameters.PrintParameters(Context);
 
 ToolSettings.SetToolSettings(context: Context);
 
 Build.RunDotNetCore();
-
-// // todo: remove Cake.Issues.Recipe
-// // todo: remove dupfinder, inspectcode
-
-// // todo: update test report (check gitversion)

@@ -13,6 +13,7 @@ jobs:
       env:
         GITHUB_USERNAME: $(GITHUB_USERNAME)
         GITHUB_TOKEN: $(GITHUB_TOKEN)
+        CHOCOLATEY_API_KEY: $(CHOCOLATEY_API_KEY)
 
     - task: PublishTestResults@2
       displayName: 'Publish Tests Result'
