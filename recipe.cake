@@ -12,7 +12,7 @@ BuildParameters.SetParameters(context: Context,
 
 BuildParameters.PrintParameters(Context);
 
-Information($"Branch name: {BuildProvider.Repository.Branch}");
+Information($"Branch name: {BuildParameters.BuildProvider.Repository.Branch}");
 
 ToolSettings.SetToolSettings(context: Context);
 
@@ -20,3 +20,5 @@ Build.RunDotNetCore();
 
 // todo: remove Cake.Issues.Recipe
 // todo: remove dupfinder, inspectcode
+
+// todo: update test report
