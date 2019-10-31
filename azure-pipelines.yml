@@ -8,7 +8,7 @@ jobs:
       inputs:
         version: '3.x'
     
-    - pwsh: ./build.ps1
+    - pwsh: ./build.ps1 --target=ContinuousIntegration
       displayName: 'Build with Cake'
       env:
         GITHUB_USERNAME: $(GITHUB_USERNAME)
