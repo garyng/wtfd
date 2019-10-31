@@ -9,6 +9,8 @@ BuildParameters.SetParameters(context: Context,
                             title: "wtfd",
                             repositoryOwner: "garyng",
                             repositoryName: "wtfd",
+                            shouldRunDupFinder: false,
+                            shouldRunInspectCode: false,
                             shouldRunGitVersion: true);
 
 BuildParameters.PrintParameters(Context);

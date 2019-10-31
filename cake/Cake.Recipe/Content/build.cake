@@ -419,9 +419,9 @@ BuildParameters.Tasks.PackageTask = Task("Package")
     .IsDependentOn("Export-Release-Notes");
 
 BuildParameters.Tasks.DefaultTask = Task("Default")
-    .IsDependentOn("Package")
+    .IsDependentOn("Package");
     // Run issues task from Cake.Issues.Recipe by default.
-    .IsDependentOn("Issues");
+    // .IsDependentOn("Issues");
 
 BuildParameters.Tasks.UploadArtifactsTask = Task("Upload-Artifacts")
     .IsDependentOn("Package")
