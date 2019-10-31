@@ -19,7 +19,7 @@ ToolSettings.SetToolSettings(context: Context);
 
 Build.RunDotNetCore();
 
-// todo: remove Cake.Issues.Recipe
-// todo: remove dupfinder, inspectcode
+// // todo: remove Cake.Issues.Recipe
+// // todo: remove dupfinder, inspectcode
 
-// todo: update test report
+// // todo: update test report (check gitversion)

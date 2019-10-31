@@ -520,7 +520,7 @@ public static class BuildParameters
         }
 
         IsTagged = (
-            BuildProvider.Repository.Tag.IsTag &&
+            !string.IsNullOrWhiteSpace(context.GitDescribe(RootDirectoryPath, GitDescribeStrategy.Tags)) &&
             !string.IsNullOrWhiteSpace(BuildProvider.Repository.Tag.Name)
         );
         TreatWarningsAsErrors = treatWarningsAsErrors;
