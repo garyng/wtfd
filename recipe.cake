@@ -8,8 +8,6 @@ BuildParameters.SetParameters(context: Context,
                             title: "wtfd",
                             repositoryOwner: "garyng",
                             repositoryName: "wtfd",
-                            shouldRunDupFinder: false,
-                            shouldRunInspectCode: false,
                             shouldRunGitVersion: true);
 
 BuildParameters.PrintParameters(Context);
@@ -19,3 +17,4 @@ ToolSettings.SetToolSettings(context: Context);
 Build.RunDotNetCore();
 
 // todo: remove Cake.Issues.Recipe
+// todo: remove dupfinder, inspectcode
