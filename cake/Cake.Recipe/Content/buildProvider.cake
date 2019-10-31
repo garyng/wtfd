@@ -40,7 +40,6 @@ public static IBuildProvider GetBuildProvider(ICakeContext context, BuildSystem 
     if (buildSystem.IsRunningOnAzurePipelines || buildSystem.IsRunningOnAzurePipelinesHosted)
     {
         context.Information("Using Azure DevOps Pipelines Provider...");
-        context.Information($">>> branch name is {buildSystem.TFBuild.Environment.Repository.Branch}");
         return new AzurePipelinesBuildProvider(buildSystem.TFBuild, context.Environment);
     }
 

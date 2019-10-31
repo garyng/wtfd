@@ -6,17 +6,19 @@ public class AzurePipelinesTagInfo : ITagInfo
 {
     public AzurePipelinesTagInfo(ITFBuildProvider tfBuild)
     {
-        const string refTags = "refs/tags/";
-        // at the moment, there is no ability to know is it tag or not
-        IsTag = tfBuild.Environment.Repository.Branch.StartsWith(refTags);
-        Name = IsTag
-            ? tfBuild.Environment.Repository.Branch.Substring(refTags.Length)
-            : string.Empty;
+        IsTag = checkIsTagged();
+        Name = tfBuild.Environment.Repository.Branch;
     }
 
     public bool IsTag { get; }
 
     public string Name { get; }
+
+    private bool checkIsTagged()
+    {
+        var tag = GitDescribe(".", GitDescribeStrategy.Tags);
+        return !string.IsNullOrEmpty(tag);
+    }
 }
 
 public class AzurePipelinesRepositoryInfo : IRepositoryInfo
