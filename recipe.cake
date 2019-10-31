@@ -12,6 +12,8 @@ BuildParameters.SetParameters(context: Context,
 
 BuildParameters.PrintParameters(Context);
 
+Information($"Branch name: {BuildProvider.Repository.Branch}");
+
 ToolSettings.SetToolSettings(context: Context);
 
 Build.RunDotNetCore();
