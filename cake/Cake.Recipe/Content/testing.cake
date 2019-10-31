@@ -166,7 +166,7 @@ BuildParameters.Tasks.TestFixieTask = Task("Test-Fixie")
 BuildParameters.Tasks.DotNetCoreTestTask = Task("DotNetCore-Test")
     .IsDependentOn("Install-OpenCover")
     .Does(() => {
-
+    EnsureDirectoryExists(BuildParameters.Paths.Directories.VSTestTestResults);
     var projects = GetFiles(BuildParameters.TestDirectoryPath + (BuildParameters.TestFilePattern ?? "/**/*Tests.csproj"));
 
     foreach (var project in projects)
@@ -176,6 +176,8 @@ BuildParameters.Tasks.DotNetCoreTestTask = Task("DotNetCore-Test")
             var settings = new DotNetCoreTestSettings
             {
                 Configuration = BuildParameters.Configuration,
+                Logger = "trx;LogFileName=TestsResult.trx",
+                ResultsDirectory = BuildParameters.Paths.Directories.VSTestTestResults,
                 NoBuild = true
             };
             tool.DotNetCoreTest(project.FullPath, settings);
