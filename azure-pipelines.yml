@@ -7,5 +7,8 @@ jobs:
       displayName: 'Install .NET Core 3.x'
       inputs:
         version: '3.x'
-    - pwsh: ./build.ps1
+    
+    - pwsh: echo $env:GITHUB_USERNAME
       displayName: 'Build with Cake'
+      env:
+        GITHUB_USERNAME: $(GITHUB_USERNAME)
