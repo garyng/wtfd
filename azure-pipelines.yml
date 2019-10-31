@@ -8,7 +8,8 @@ jobs:
       inputs:
         version: '3.x'
     
-    - pwsh: echo $env:GITHUB_USERNAME
+    - pwsh: ./build.ps1
       displayName: 'Build with Cake'
       env:
         GITHUB_USERNAME: $(GITHUB_USERNAME)
+        GITHUB_TOKEN: $(GITHUB_TOKEN)
