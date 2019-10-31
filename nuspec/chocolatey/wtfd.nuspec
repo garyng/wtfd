@@ -7,7 +7,8 @@
     <title>wtfd</title>
     <authors>garyng</authors>
     <projectUrl>https://github.com/garyng/wtfd</projectUrl>
-    <!--<iconUrl>http://cdn.rawgit.com/__REPLACE_YOUR_REPO__/master/icons/wtfd.png</iconUrl>-->
+    <packageSourceUrl>https://github.com/garyng/wtfd</packageSourceUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/garyng/wtfd@master/design/icons/Icon.png</iconUrl>
     <copyright>Copyright (c) 2019 - Present</copyright>
     <licenseUrl>https://github.com/garyng/wtfd/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

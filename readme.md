@@ -1,8 +1,8 @@
-# `wtfd` — What This Folder Does?
-
-[![Build Status](https://dev.azure.com/garyng/wtfd/_apis/build/status/garyng.wtfd?branchName=master)](https://dev.azure.com/garyng/wtfd/_build/latest?definitionId=1&branchName=master)
+![](./design/banners/Banner-with-bg.png)
 
 Documentation for folders.
+
+[![Build Status](https://dev.azure.com/garyng/wtfd/_apis/build/status/garyng.wtfd?branchName=master)](https://dev.azure.com/garyng/wtfd/_build/latest?definitionId=1&branchName=master)
 
 ## Development
 
